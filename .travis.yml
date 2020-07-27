@@ -1,13 +1,26 @@
 language: ruby
 rvm:
 - 2.6.3
-
 dist: trusty
 sudo: false
 cache: bundler
 notifications:
   email: false
 install:
-  - bundle install
+- bundle install
 script:
-  - JEKYLL_ENV="production" bundle exec jekyll build
+- JEKYLL_ENV="production" bundle exec jekyll build
+deploy:
+  provider: script
+  script: bash script/deploy.sh
+  skip_cleanup: true
+  on:
+    tags: true
+    branch: staging
+branches:
+  only:
+  - staging
+  - "/\\d+\\.\\d+(\\.\\d+)?(-\\S*)?$/"
+env:
+  global:
+    secure: GDhlAdel5O0u7hJkBIaVxxMDQhentiKrhB1JxfLoeAB0TpQu/PK+iVTnqZdjxKaKw9tsRR6/PxTQHLDa6XilKl6FeSevjUl5Hd6Gnf32EaDrJ4B4S/r94GZzS1jj2L+Lj96A9p6ziJznXfbpApwGuFUbQYU4mRa5iNPPqtMcKKZx82W79aRtQepAkcJ4B7TdUYovSDupi0onC+8bSv+mKWulpuskv/ZU1deJBTMQBP/JScJQlFucFHrRD7GflsB27GG3Qu1TwoxUSeIGStNl7VgSdDngkOtESAKRNhFvRmXGVjHpA9w/vFAqrJugSI26ZKsmlrMgrRrc9LVdx9fbSLWQiiSFnq4tVwBHENeeVQc50OXJFw3z3lbfQoGJ04oj4m8fVTNkzcTHubbWVfmy+YOx41Lv45pWWU2Wd9f3bk3aepL3CrOK4J0n48ksXHB3Ue7xt370nHyK8JbKe+xLC7KghVBnx2aRT8X92PEWNW6lSbb1EDUJ39VDNFXyIXYLj1c6hlFofICy9KHTD+0GVfVBWNrn4BbmyuUSWME7+vEUcjWQJKpBfbvNmeOR4GlSrVr3VqAmJEQ/56AlAtEoxknvib7Ia3moQuHgjNpDsOaVJAROJvj1WAzScIkillVATWDmLxC9xN5fNJcXgtrCb52FhZoPEPI5NgN8L5/B0LQ=
