@@ -4,3 +4,5 @@
 
 layout: home
 ---
+
+{% picture flag.png %}
