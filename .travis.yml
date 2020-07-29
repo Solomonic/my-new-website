@@ -10,6 +10,7 @@ install:
 - bundle install
 script:
 - JEKYLL_ENV="production" bundle exec jekyll build
+- bundle exec htmlproofer ./docs  
 deploy:
   provider: script
   script: bash script/deploy.sh
@@ -21,6 +22,12 @@ branches:
   only:
   - staging
   - "/\\d+\\.\\d+(\\.\\d+)?(-\\S*)?$/"
+
 env:
   global:
-    secure: XKo7rCrsjI7vGGjM0a5ZlZQNu60ehrdl7NzYcMZw5/xysgrx2Y+hmzxMfcsQeZb3Wa0LfrhwaY22TyTWLhXvz4GWdln+I7rxndekbR/ETBxLlKOgoZkQ/+eoOlW7Cn63jJfOO2fv4pSlhz+MSmC899T9yOr/jeWQgkfaSWAZZIMADW000eFlqW99JX0ABIFhxTFt/vFtuTiOr8FO4ofIW5GJYNvvTKUZcc8/1rdXBGt/pWzYIwS00afF+8EGBooal0qgmpgAAHScXWG+hqaLgYnG1C19n3IaTRMPSVNS703nVUNznmUBCeTsyU43r1KGYVneeEniLrrK+o0bReYaqc9lVBpi1Xw7tCwsEzgKFSnmr5IDFt0uFezruwYr0BpWzv95mm+I6ETZPHZuRadFu7bixSWO+LXvroX9LzINnSpUfMEzyyzESUnmMQSKiO2vHq956Vmz8VBumlweJXbGBcuLBB2BfdERvPNm0mIccOujOMQBIsJP6rAQND/aEUm0SllbETAyth12DEoUPyYAY8MnD9ZYwjnsp7ZniUcebNmzwiRUXsoiYRMS5tx7HIq5hEyexFCYAS7/xuuMgxQIxTV85uLPloIFdaFSaZadmdRbyDXuFWC5EXMrGmUXkTkar2aHgsYH2xwejb+77ZnI5OOT6Po3m54j5fQEPllTGEM=
+    - NOKOGIRI_USE_SYSTEM_LIBRARIES=true # speeds up installation of html-proofer
+    - secure: XKo7rCrsjI7vGGjM0a5ZlZQNu60ehrdl7NzYcMZw5/xysgrx2Y+hmzxMfcsQeZb3Wa0LfrhwaY22TyTWLhXvz4GWdln+I7rxndekbR/ETBxLlKOgoZkQ/+eoOlW7Cn63jJfOO2fv4pSlhz+MSmC899T9yOr/jeWQgkfaSWAZZIMADW000eFlqW99JX0ABIFhxTFt/vFtuTiOr8FO4ofIW5GJYNvvTKUZcc8/1rdXBGt/pWzYIwS00afF+8EGBooal0qgmpgAAHScXWG+hqaLgYnG1C19n3IaTRMPSVNS703nVUNznmUBCeTsyU43r1KGYVneeEniLrrK+o0bReYaqc9lVBpi1Xw7tCwsEzgKFSnmr5IDFt0uFezruwYr0BpWzv95mm+I6ETZPHZuRadFu7bixSWO+LXvroX9LzINnSpUfMEzyyzESUnmMQSKiO2vHq956Vmz8VBumlweJXbGBcuLBB2BfdERvPNm0mIccOujOMQBIsJP6rAQND/aEUm0SllbETAyth12DEoUPyYAY8MnD9ZYwjnsp7ZniUcebNmzwiRUXsoiYRMS5tx7HIq5hEyexFCYAS7/xuuMgxQIxTV85uLPloIFdaFSaZadmdRbyDXuFWC5EXMrGmUXkTkar2aHgsYH2xwejb+77ZnI5OOT6Po3m54j5fQEPllTGEM=
+addons:
+  apt:
+    packages:
+    - libcurl4-openssl-dev
