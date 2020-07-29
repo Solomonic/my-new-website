@@ -6,11 +6,18 @@ sudo: false
 cache: bundler
 notifications:
   email: false
+
 install:
 - bundle install
+
 script:
 - JEKYLL_ENV="production" bundle exec jekyll build
-- bundle exec htmlproofer ./docs  
+- mv docs docs2 && mkdir docs && mv docs2 docs/my-new-website
+- bundle exec htmlproofer docs
+
+after_script:
+- rm -rf docs
+
 deploy:
   provider: script
   script: bash script/deploy.sh
