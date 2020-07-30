@@ -5,4 +5,3 @@
 layout: home
 ---
 
-{% picture flag.png --alt This is a flag for demo purpose %}
