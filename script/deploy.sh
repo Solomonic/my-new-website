@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 git status
+rm Gemfile.lock
 bundle install
 JEKYLL_ENV="production" bundle exec jekyll build
 git status
