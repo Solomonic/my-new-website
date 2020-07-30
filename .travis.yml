@@ -12,8 +12,8 @@ install:
 
 script:
 - JEKYLL_ENV="production" bundle exec jekyll build
-- cp -a docs docs2 && mkdir docs_test && mv docs2 docs/my-new-website
-- bundle exec htmlproofer docs
+- cp -a docs docs2 && mkdir docs_test && mv docs2 docs_test/my-new-website
+- bundle exec htmlproofer docs_test
 - rm -rf docs_test
 
 deploy:
